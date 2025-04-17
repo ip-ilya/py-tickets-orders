@@ -135,7 +135,8 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        queryset = self.queryset.filter(user=self.request.user)
+        queryset = self.queryset
+        queryset = queryset.filter(user=self.request.user)
 
         if self.action == "list":
             queryset = queryset.prefetch_related(
